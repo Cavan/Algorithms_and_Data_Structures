@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReviewAlgorithmsDataStructures", "ReviewAlgorithmsDataStructures\ReviewAlgorithmsDataStructures.vcxproj", "{95F04C44-EFD1-4BA5-A246-566B9ECC3FB6}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Recursion", "Recursion\Recursion.vcxproj", "{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{95F04C44-EFD1-4BA5-A246-566B9ECC3FB6}.Release|x64.Build.0 = Release|x64
 		{95F04C44-EFD1-4BA5-A246-566B9ECC3FB6}.Release|x86.ActiveCfg = Release|Win32
 		{95F04C44-EFD1-4BA5-A246-566B9ECC3FB6}.Release|x86.Build.0 = Release|Win32
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Debug|x64.ActiveCfg = Debug|x64
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Debug|x64.Build.0 = Debug|x64
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Debug|x86.ActiveCfg = Debug|Win32
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Debug|x86.Build.0 = Debug|Win32
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Release|x64.ActiveCfg = Release|x64
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Release|x64.Build.0 = Release|x64
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Release|x86.ActiveCfg = Release|Win32
+		{D9118339-9DEC-4C5A-9E7C-92BAB368EEB5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
