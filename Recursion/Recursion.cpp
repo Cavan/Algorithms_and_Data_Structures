@@ -48,15 +48,106 @@ void treeRecursion(int n) {
 	}
 }
 
-// Indirect Recursion
+//Taylor Series
+double e(int x, int n) {
+	static double p = 1, f = 1;
+	double r;
+	if (n == 0) {
+		return 1;
+	}
+	else{
+		r = e(x, n - 1);
+		p = p * x;
+		f = f * n;
+
+		return r + p / f;
+	}
+}
+
+//Taylor Series (Horner's Rule)
+double e2(int x, int n) {
+	static double s;
+	if (n == 0) {
+		return s;
+	}
+	s = 1 + x * s / n;
+	return e2(x, n - 1);
+}
+
+//Taylor Series (Iterative)
+double e3(int x, int n) {
+	double s = 1;
+	int i;
+	double num = 1;
+	double den = 1;
+
+	for (i = 1; i <= n; i++) {
+		num *= x;
+		den *= i;
+		s += num / den;
+	}
+	return s;
+}
 
 
+// Fibonacci Series (iterative)
+int fibItr(int n) {
+	int t0 = 0, t1 = 1, s = 0, i;
 
+	if (n <= 1) return n;
+
+		for (i = 2; i <= n; i++) {
+			s = t0 + t1;
+				t0 = t1;
+				t1 = s;		
+	}
+		return s;
+
+}
+
+// Fibonacci Series (recursive)
+int rfib(int n)
+{
+	if (n <= 1) return n;
+	return rfib(n - 2) + rfib(n - 1);
+}
+
+// Fibonacci Series (recursive) modified for time complexity
+int F[10];
+void arrayInit() {
+	int i;
+	for (i = 0; i < 10; i++) {
+		F[i] = -1;
+	}
+}
+int mfib(int n) {
+	if (n <= 1) {
+		F[n] = n;
+		return n;
+	}
+	else {
+		if (F[n - 2] == -1) {
+			F[n - 2] = mfib(n - 2);
+		}
+		if (F[n - 1] == -1) {
+			F[n - 1] = mfib(n - 1);
+		}
+		F[n] = F[n - 2] + F[n - 1];
+		return F[n - 2] + F[n - 1];
+	}
+}
+
+
+// nCr ()
+
+// Tower of Hanoi
 
 int main() {
 	
-	 //Tree Recursion
-	treeRecursion(3);
+	//printf("%d \n", fibItr(5));
+	arrayInit();
+	printf("%d \n", mfib(1001));
+    printf("%d \n", rfib(1001));
 
 	return 0;
 }
