@@ -138,16 +138,63 @@ int mfib(int n) {
 }
 
 
-// nCr ()
+// nCr (Combination Formula)
+int fact(int n) {
+	if (n == 0) return 1;
+	return fact(n - 1) * n;
+}
 
-// Tower of Hanoi
+int nCr(int n, int r) {
+	int num, den;
+
+	num = fact(n);
+	den = fact(r) * fact(n - r);
+
+	return num / den;
+}
+// nCr (Combination Formula) recursive
+int NCR(int n, int r) {
+	if (n == r || r == 0) {
+		return 1;
+	}
+	return NCR(n - 1, r - 1) + NCR(n - 1, r);
+}
+
+
+// Tower of Hanoi Problem
+// Move 3 discs from Tower 1 to Tower 3
+void TOH(int n, int A, int B, int C) {
+	if (n > 0) {
+		TOH(n - 1, A, C, B);
+		printf("(From: %d, To: %d)\n", A, C);
+		TOH(n - 1, B, A, C);
+	}
+}
+
+
+//Quiz 1
+int f_Q3(int& x, int c)
+
+{
+
+	c = c -1;
+
+	if (c == 0) return 1;
+
+	x = x + 1;
+
+	//printf("%d \n", (f_Q3(x, c) * x));
+
+	return f_Q3(x, c) * x;
+
+}
 
 int main() {
 	
-	//printf("%d \n", fibItr(5));
-	arrayInit();
-	printf("%d \n", mfib(1001));
-    printf("%d \n", rfib(1001));
+	int p = 5;
+
+	printf("%d \n", f_Q3(p, p));
+
 
 	return 0;
 }
