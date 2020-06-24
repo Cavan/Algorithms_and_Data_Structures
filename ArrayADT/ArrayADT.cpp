@@ -197,6 +197,44 @@ float Avg(struct Array arr)
 	return (float)Sum(arr) / arr.length;
 }
 
+// Reverse
+void Reverse(struct Array* arr)
+{
+	int* B;
+	int i, j;
+	B = (int*)malloc(arr->length * sizeof(int));
+	for (i = arr->length - 1, j = 0; i >= 0; i--, j++)
+	{
+		B[j] = arr->A[i];
+	}
+	for (i = 0; i < arr->length; i++)
+	{
+		arr->A[i] = B[i];
+	}
+}
+
+
+// Reverse2
+void Reverse2(struct Array* arr)
+{
+	int i, j;
+	for (i = 0, j = arr->length - 1; i < j;i++, j--)
+	{
+		swap(&arr->A[i], &arr->A[j]);
+	}
+}
+
+
+
+// Sorted
+
+
+// Merge
+
+
+// Set Operations
+
+
 
 
 
@@ -205,19 +243,10 @@ int main() {
 
 	struct Array arr1 = { {2,3,9,16,18,21,28,32,35},10,9 };
 	
-	/*printf("\nGet()\n%d\n\n",Get(arr1, 5));
+	Reverse(&arr1);
 	Display(arr1);
-	Set(&arr1, 5, 8);
-	printf("\nSet()\n");*/
+	//Reverse2(&arr1);
 	Display(arr1);
-	printf("\nMax()\n%d\n\n", Max(arr1));
-	Display(arr1);
-	printf("\nMin()\n%d\n\n", Min(arr1));
-	Display(arr1);
-	printf("\nSum()\n%d\n\n", Sum(arr1));
-	Display(arr1);
-	printf("\nAvg()\n%f\n\n", Avg(arr1));
-	
 
 
 	return 0;
