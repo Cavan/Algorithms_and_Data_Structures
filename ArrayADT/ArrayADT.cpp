@@ -129,15 +129,95 @@ int RBinSearch(int a[], int l, int h, int key)
 	}
 }
 
+// Get
+int Get(struct Array arr, int index)
+{
+	if (index >= 0 && index < arr.length)
+	{
+		return arr.A[index];
+	}
+	return -1;
+}
+
+// Set
+void Set(struct Array* arr, int index, int x)
+{
+	if (index >= 0 && index < arr->length)
+	{
+		arr->A[index] = x;
+	}
+}
+
+// Max
+int Max(struct Array arr)
+{
+	int max = arr.A[0];
+	int i;
+	for (i = 1; i < arr.length; i++)
+	{
+		if (arr.A[i] > max)
+		{
+			max = arr.A[i];
+		}
+	}
+		return max;
+}
+
+// Min
+int Min(struct Array arr)
+{
+	int min = arr.A[0];
+	int i;
+	for (i = 1; i<arr.length; i++)
+	{
+		if (arr.A[i] < min)
+		{
+			min = arr.A[i];
+		}
+	}
+	return min;
+}
+
+// Sum
+int Sum(struct Array arr)
+{
+	int s = 0;
+	int i;
+	for (i = 0; i < arr.length; i++)
+	{
+		s += arr.A[i];
+	}
+	return s;
+}
+
+
+// Avg
+float Avg(struct Array arr)
+{
+	return (float)Sum(arr) / arr.length;
+}
 
 
 
 
+// main
 int main() {
 
 	struct Array arr1 = { {2,3,9,16,18,21,28,32,35},10,9 };
-	printf("\n\n%d\n\n", BinarySearch(arr1, 16));
+	
+	/*printf("\nGet()\n%d\n\n",Get(arr1, 5));
 	Display(arr1);
+	Set(&arr1, 5, 8);
+	printf("\nSet()\n");*/
+	Display(arr1);
+	printf("\nMax()\n%d\n\n", Max(arr1));
+	Display(arr1);
+	printf("\nMin()\n%d\n\n", Min(arr1));
+	Display(arr1);
+	printf("\nSum()\n%d\n\n", Sum(arr1));
+	Display(arr1);
+	printf("\nAvg()\n%f\n\n", Avg(arr1));
+	
 
 
 	return 0;
