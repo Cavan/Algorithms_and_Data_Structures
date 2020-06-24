@@ -227,10 +227,50 @@ void Reverse2(struct Array* arr)
 
 
 // Sorted
-
+int isSorted(struct Array arr)
+{
+	int i;
+	for (i = 0; i < arr.length - 1; i++)
+	{
+		if (arr.A[i] > arr.A[i + 1])
+		{
+			return 0;
+		}
+	}
+	return 1;
+}
 
 // Merge
+struct Array* Merge(struct Array* arr1, struct Array* arr2)
+{
+	int i, j, k;
+	i = j = k = 0;
+	struct Array* arr4 = (struct Array*)malloc(sizeof(struct Array));
 
+	while (i < arr1->length && j < arr2->length)
+	{
+		if (arr1->A[i] < arr2->A[j])
+		{
+			arr4->A[k++] = arr1->A[i++];
+		}
+		else
+		{
+			arr4->A[k++] = arr2->A[j++];
+		}
+	}
+	for (; i < arr1->length; i++)
+	{
+		arr4->A[k++] = arr1->A[i];
+	}
+	for (; j < arr2->length; j++)
+	{
+		arr4->A[k++] = arr2->A[j];
+	}
+	arr4->length = arr1->length + arr2->length;
+	arr4->size = 10;
+
+	return arr4;
+}
 
 // Set Operations
 
@@ -241,13 +281,13 @@ void Reverse2(struct Array* arr)
 // main
 int main() {
 
-	struct Array arr1 = { {2,3,9,16,18,21,28,32,35},10,9 };
+	//struct Array arr1 = { {2,3,9,16,18,21,28,35,32},10,9 };
+	struct Array arr2 = { {2,6,10,15,25},10,5 };
+	struct Array arr3 = { {3,4,7,18,20},10,5 };
+	struct Array* arr4;
 	
-	Reverse(&arr1);
-	Display(arr1);
-	//Reverse2(&arr1);
-	Display(arr1);
-
+	arr4=Merge(&arr2, &arr3);
+	Display(*arr4);
 
 	return 0;
 }
