@@ -6,7 +6,7 @@ using namespace std;
 
 struct Array
 {
-	int A[10];
+	int* A;
 	int size;
 	int length;
 };
@@ -18,6 +18,7 @@ void Display(struct Array arr) {
 	for (i = 0; i < arr.length; i++) {
 		printf("%d ", arr.A[i]);
 	}
+	printf("\n\n");
 }
 
 // Swap method
@@ -39,7 +40,7 @@ void Append(struct Array* arr, int x) {
 void Insert(struct Array* arr, int index, int x) 
 {
 	int i;
-	if (index > 0 && index <= arr->length) 
+	if (index >= 0 && index <= arr->length) 
 	{
 		for (i = arr->length; i > index; i--)
 		{
@@ -273,7 +274,109 @@ struct Array* Merge(struct Array* arr1, struct Array* arr2)
 }
 
 // Set Operations
+//Union
+struct Array* Union(struct Array* arr1, struct Array* arr2)
+{
+	int i, j, k;
+	i = j = k = 0;
+	struct Array* arr3 = (struct Array*)malloc(sizeof(struct Array));
 
+	while (i < arr1->length && j < arr2->length)
+	{
+		if (arr1->A[i] < arr2->A[j])
+		{
+			arr3->A[k++] = arr1->A[i++];
+		}
+		else if (arr2->A[j] < arr1->A[i])
+		{
+			arr3->A[k++] = arr2->A[j++];
+		}
+		else
+		{
+			arr3->A[k++] = arr1->A[i++];
+			j++;
+		}
+	}
+
+	for (; i < arr1->length; i++)
+	{
+		arr3->A[k++] = arr1->A[i];
+	}
+	for (; j < arr2->length; j++)
+	{
+		arr3->A[k++] = arr2->A[j];
+	}
+	arr3->length = k;
+	arr3->size = 10;
+
+	return arr3;
+}
+
+// Intersection
+struct Array* Intersection(struct Array* arr1, struct Array* arr2)
+{
+	int i, j, k;
+	i = j = k = 0;
+	struct Array* arr3 = (struct Array*)malloc(sizeof(struct Array));
+
+	while (i < arr1->length && j < arr2->length)
+	{
+		if (arr1->A[i] < arr2->A[j])
+		{
+			i++;
+		}
+		else if (arr2->A[j] < arr1->A[i])
+		{
+			j++;
+		}
+		else if (arr1->A[i] == arr2->A[j])
+		{
+			arr3->A[k++] = arr1->A[i++];
+			j++;
+		}
+	}
+
+	
+	arr3->length = k;
+	arr3->size = 10;
+
+	return arr3;
+}
+
+//Difference
+struct Array* Difference(struct Array* arr1, struct Array* arr2)
+{
+	int i, j, k;
+	i = j = k = 0;
+	struct Array* arr3 = (struct Array*)malloc(sizeof(struct Array));
+
+	while (i < arr1->length && j < arr2->length)
+	{
+		if (arr1->A[i] < arr2->A[j])
+		{
+			arr3->A[k++] = arr1->A[i++];
+		}
+		else if (arr2->A[j] < arr1->A[i])
+		{
+			j++;
+		}
+		else 
+		{
+			i++;
+			j++;
+		}
+	}
+
+	for (; i < arr1->length; i++)
+	{
+		arr3->A[k++] = arr1->A[i];
+	}
+
+	arr3->length = k;
+	arr3->size = 10;
+
+	return arr3;
+}
 
 
 
@@ -281,13 +384,55 @@ struct Array* Merge(struct Array* arr1, struct Array* arr2)
 // main
 int main() {
 
-	//struct Array arr1 = { {2,3,9,16,18,21,28,35,32},10,9 };
-	struct Array arr2 = { {2,6,10,15,25},10,5 };
-	struct Array arr3 = { {3,4,7,18,20},10,5 };
-	struct Array* arr4;
+	struct Array arr1;
+	int ch;
+	int x, index;
+
+	printf("Enter size of Array");
+	scanf("%d", &arr1.size);
+	arr1.A = (int*)malloc(arr1.size * sizeof(int));
+	arr1.length = 0;
 	
-	arr4=Merge(&arr2, &arr3);
-	Display(*arr4);
+	do {
+		printf("Menu\n");
+		printf("1. Insert\n");
+		printf("2. Delete\n");
+		printf("3. Search\n");
+		printf("4. Sum\n");
+		printf("5. Display\n");
+		printf("6. Exit\n");
+
+		printf("enter your choice ");
+		scanf("%d", &ch);
+
+		switch (ch)
+		{
+		case 1:
+			printf("Enter an element and index ");
+			scanf("%d%d", &x, &index);
+			Insert(&arr1, index, x);
+			break;
+		case 2:
+			printf("Enter index ");
+			scanf("%d", &index);
+			x = Delete(&arr1, index);
+			printf("Deleted Element is &d\n", x);
+			break;
+		case 3:
+			printf("Enter element to search ");
+			scanf("%d", &x);
+			index = LinearSearch(&arr1, x);
+			printf("Element index &d", index);
+			break;
+		case 4:
+			printf("Sum is &d\n", Sum(arr1));
+			break;
+		case 5:
+			Display(arr1);
+
+		}
+	} while (ch < 6);
+
 
 	return 0;
 }
